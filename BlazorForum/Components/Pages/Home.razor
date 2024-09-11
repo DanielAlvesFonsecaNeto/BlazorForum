@@ -1,7 +1,30 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 
-<PageTitle>Home</PageTitle>
+@using BlazorForum.Components.Widgets
+@using BlazorForum.Data
+@inject PostagemServices Service
 
-<h1>Hello, world!</h1>
+<PageTitle>Forum</PageTitle>
+    
+<h1>Forum</h1>
 
-Welcome to your new app.
+@foreach (var post in postagens)
+{
+    <PostagemItem postagem="post" />
+}
+
+@code
+{
+    List<Postagem> postagens = [];
+    protected override async Task OnInitializedAsync()
+    {
+        await AtualizaPostagens();
+    }
+
+    private async Task AtualizaPostagens()
+    {
+        postagens = await Service.RetornaPostagens();
+    }
+    
+}

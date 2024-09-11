@@ -1,0 +1,12 @@
+@using BlazorForum.Data
+
+<div class="card-body">
+    <h5 class="card-title">@postagem.Titulo</h5>
+    <p class="card-text">@postagem.Texto</p>
+    <p class="card-footer"> Autor: @postagem.Autor.Nome </p>
+    <a href="#" class="btn btn-primary">Ver mais</a>
+</div>
+
+@code {
+    [Parameter] public Postagem postagem { get; set; }
+}
